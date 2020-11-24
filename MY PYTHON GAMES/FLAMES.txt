@@ -1,0 +1,15 @@
+l,b=['HAHA FRIENDS!','LUCKY! YOU TWO ARE LOVERS','WOW! AFFECTION!','WOW! MARRIAGE','LOL! ENEMY!','BAD LUCK! SISTER'],[]
+j,k=list(input('ENTER YOUR NAME ').upper()),list(input('ENTER YOUR CRUSH/PARTNER/LOVER NAME ').upper())
+if len(j)>len(k):range1=len(j)
+else:range1=len(k)
+for i in range(range1):
+    for i in j:
+        if i in k:
+            j.remove(i)
+            k.remove(i)
+b.extend(j)
+b.extend(k)
+for i in range(5):
+    for i in range(len(b)):l.append(l[i])
+    l=l[len(b):len(l)-1]
+print('your relationship status: ',*l)

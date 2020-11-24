@@ -1,0 +1,132 @@
+import random
+from random import randint
+from IPython.display import clear_output
+def idcheck(board,item):
+    return [i for i, x in enumerate(board) if x == item]
+def dice():   
+    return random.choice([1,2,3,4,5,6])
+def display(b):
+    print('')
+    print("WELCOME TO SNAKE AND LADDER GAME"+ '\033[0m')
+    print('-------------------------------------------------------------')
+    print('| '+str(b[99]).center(3)+' | '+str(b[98]).center(3)+' | '+str(b[97]).center(3)+' | '+str(b[96]).center(3)+' | '+str(b[95]).center(3)+' | '+str(b[94]).center(3)+' | '+str(b[93]).center(3)+' | '+str(b[92]).center(3)+' | '+str(b[91]).center(3)+' | '+str(b[90]).center(3)+' | ')
+    print('-------------------------------------------------------------')
+    print('| '+str(b[80]).center(3)+' | '+str(b[81]).center(3)+' | '+str(b[82]).center(3)+' | '+str(b[83]).center(3)+' | '+str(b[84]).center(3)+' | '+str(b[85]).center(3)+' | '+str(b[86]).center(3)+' | '+str(b[87]).center(3)+' | '+str(b[88]).center(3)+' | '+str(b[89]).center(3)+' | ')
+    print('-------------------------------------------------------------')
+    print('| '+str(b[79]).center(3)+' | '+str(b[78]).center(3)+' | '+str(b[77]).center(3)+' | '+str(b[76]).center(3)+' | '+str(b[75]).center(3)+' | '+str(b[74]).center(3)+' | '+str(b[73]).center(3)+' | '+str(b[72]).center(3)+' | '+str(b[71]).center(3)+' | '+str(b[70]).center(3)+' | ')
+    print('-------------------------------------------------------------')
+    print('| '+str(b[60]).center(3)+' | '+str(b[61]).center(3)+' | '+str(b[62]).center(3)+' | '+str(b[63]).center(3)+' | '+str(b[64]).center(3)+' | '+str(b[65]).center(3)+' | '+str(b[66]).center(3)+' | '+str(b[67]).center(3)+' | '+str(b[68]).center(3)+' | '+str(b[69]).center(3)+' | ')
+    print('-------------------------------------------------------------')
+    print('| '+str(b[59]).center(3)+' | '+str(b[58]).center(3)+' | '+str(b[57]).center(3)+' | '+str(b[56]).center(3)+' | '+str(b[55]).center(3)+' | '+str(b[54]).center(3)+' | '+str(b[53]).center(3)+' | '+str(b[52]).center(3)+' | '+str(b[51]).center(3)+' | '+str(b[50]).center(3)+' | ')
+    print('-------------------------------------------------------------')
+    print('| '+str(b[40]).center(3)+' | '+str(b[41]).center(3)+' | '+str(b[42]).center(3)+' | '+str(b[43]).center(3)+' | '+str(b[44]).center(3)+' | '+str(b[45]).center(3)+' | '+str(b[46]).center(3)+' | '+str(b[47]).center(3)+' | '+str(b[48]).center(3)+' | '+str(b[49]).center(3)+' | ')
+    print('-------------------------------------------------------------')
+    print('| '+str(b[39]).center(3)+' | '+str(b[38]).center(3)+' | '+str(b[37]).center(3)+' | '+str(b[36]).center(3)+' | '+str(b[35]).center(3)+' | '+str(b[34]).center(3)+' | '+str(b[33]).center(3)+' | '+str(b[32]).center(3)+' | '+str(b[31]).center(3)+' | '+str(b[30]).center(3)+' | ')
+    print('-------------------------------------------------------------')
+    print('| '+str(b[20]).center(3)+' | '+str(b[21]).center(3)+' | '+str(b[22]).center(3)+' | '+str(b[23]).center(3)+' | '+str(b[24]).center(3)+' | '+str(b[25]).center(3)+' | '+str(b[26]).center(3)+' | '+str(b[27]).center(3)+' | '+str(b[28]).center(3)+' | '+str(b[29]).center(3)+' | ')
+    print('-------------------------------------------------------------')
+    print('| '+str(b[19]).center(3)+' | '+str(b[18]).center(3)+' | '+str(b[17]).center(3)+' | '+str(b[16]).center(3)+' | '+str(b[15]).center(3)+' | '+str(b[14]).center(3)+' | '+str(b[13]).center(3)+' | '+str(b[12]).center(3)+' | '+str(b[11]).center(3)+' | '+str(b[10]).center(3)+' | ')
+    print('-------------------------------------------------------------')
+    print('| '+str(b[0]).center(3)+' | '+str(b[1]).center(3)+' | '+str(b[2]).center(3)+' | '+str(b[3]).center(3)+' | '+str(b[4]).center(3)+' | '+str(b[5]).center(3)+' | '+str(b[6]).center(3)+' | '+str(b[7]).center(3)+' | '+str(b[8]).center(3)+' | '+str(b[9]).center(3)+' | ')
+    print('-------------------------------------------------------------')
+def p1_enter():
+    player1=input('PLAYER 1 ROLL THE DICE TO ENTER THE BOARD!!! ')
+    if player1.lower()[0]=='y':
+        p1_res=dice()
+        if p1_res==1:
+            print('PLAYER 1 ON BOARD')
+            return 1
+def p2_enter():   
+    player2=input('PLAYER 2 ROLL THE DICE TO ENTER THE BOARD!!! ')
+    if player2.lower()[0]=='y':
+        p2_res=dice()
+        if p2_res==1:
+            print('PLAYER 2 ON BOARD')
+            return 1                    
+board=[1,2,'S1','S2','L1', 6,7,8,9,10,11,'L2','S3','S4', 15,16,17,18,19,20,21,'S2',23,24,'L3',26,'L1',28,29,'L4',31,'S3','L2',34,35,36,37,38,'S5',40,41,'L5','L3',44,'S4','L6','S6',48,'L4',50,51,52,53,54,55,56,57,58,59,60,61,62,63,'S5',65,66,'L6','S6',69,'L7',71,72,73,'L8',75,'L9',77,78,79,80,'L5',82,83,84,85,86,87,88,89,90,91,'L7',93,'S1','L8',96,'L9',98,'S5',100]
+player1=0
+player2=0
+pos1=0
+pos2=0
+for i in range(1000000):
+    if i%2==0:
+        if player1<1 :
+            if p1_enter()==1:
+                player1+=1
+                pos1+=1
+        else:
+            try:
+                if pos1==100:
+                    print('PLAYER 1 WINS,PLAYER 2 BETTER LUCK NEXT TIME')
+                    break
+                elif pos2==100:
+                    print('PLAYER 2 WINS,PLAYER 1 BETTER LUCK NEXT TIME')
+                    break
+                elif player1>=1:
+                    display(board)
+                    py1=input('PLAYER 1 ROLL THE DICE??: ')
+                    if py1.lower()[0]=='y':
+                        n1=dice()
+                        player1+=n1
+                        pos1=board[player1-1]
+                        print('')
+                        print(f'PLAYER 1 YOU ARE NOW IN {pos1} WITH DICE NUM {n1}')
+                        print('')
+                        if pos1 in ['S1','S2','S3','S4','S5','S6']:
+                            res=idcheck(board,pos1)[0]
+                            player1=res+1
+                            pos1=board[res]
+                            print(f'PLAYER 1 YOU ARE IN {player1} WITH SNAKE ENDING {pos1}')
+                            print('')
+                        elif pos1 in ['L1','L2','L3','L4','L5','L6','L7','L8','L9']:
+                            res=idcheck(board,pos1)[-1]
+                            pos1=board[res]
+                            player1=res+1
+                            print(f'PLAYER 1 YOU ARE IN {player1} IN LADDER {pos1}')
+                            print('')
+            except IndexError:
+                if player1>100:
+                    player1=player1-n1
+                    print(player1)
+                    
+
+    else:
+        if player2<1:
+            if p2_enter()==1:
+                player2+=1
+                pos2+=1
+        else:
+            try:
+                if pos1==100:
+                    print('PLAYER 1 WINS,PLAYER 2 BETTER LUCK NEXT TIME')
+                    break
+                elif pos2==100:
+                    print('PLAYER 2 WINS,PLAYER 1 BETTER LUCK NEXT TIME')
+                    break
+                elif player2>=1:
+                    display(board)
+                    py2=input('PLAYER 2 ROLL THE DICE??: ')
+                    if py2.lower()[0]=='y':
+                        n2=dice()
+                        player2+=n2
+                        pos2=board[player2-1]
+                        print('')
+                        print(f'PLAYER 2 YOUR ARE NOW IN {pos2} WITH DICE NUM {n2}')
+                        print('')
+                        if pos2 in ['S1','S2','S3','S4','S5','S6']:
+                            res=idcheck(board,pos2)[0]
+                            player2=res+1
+                            pos2=board[res]
+                            print(f'PLAYER 2 YOU ARE IN {player2} WITH SNAKE ENDING {pos2},')
+                            print('')
+                        elif pos2 in ['L1','L2','L3','L4','L5','L6','L7','L8','L9']:
+                            res=idcheck(board,pos2)[-1]
+                            pos2=board[res]
+                            player2=res+1
+                            print(f'PLAYER 2 YOU ARE IN {player2} IN LADDER {pos2}')
+                            print('')
+            except IndexError:
+                if player2>100:
+                    player2=player2-n2
+                    print(player2)
+                    

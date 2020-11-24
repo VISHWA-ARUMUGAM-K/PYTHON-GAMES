@@ -1,0 +1,167 @@
+#USE THIS IN JUPYTER NOTEBOOK
+
+from random import randint
+import numpy as np
+from IPython.display import clear_output
+from termcolor import colored
+
+def dicte(m):
+    d={}
+    num=[x for x in range(1,26)]
+    for i in range(5):
+        for j in range(5):
+            d[num.pop(0)]=m[i][j]
+    return d
+def col(matrix,num):
+    return[i[num] for i in matrix]
+def check(m):
+    check=[]
+    f=[0,1,2,3,4]
+    v=[]
+    for i in m:check.append(list(i))
+    for i in range(5):
+        check.append(col(m,i))
+    for i in range(5):
+        v.append(m[i][i])
+    for i,j in zip(f,f[::-1]):
+        v.append(m[i][j])
+    check.append(v[:5])
+    check.append(v[5:])
+        
+    return check
+def display(gg):
+    clear_output()
+    
+    g=list(map(str,[gg[1],gg[2],gg[3],gg[4],gg[5]]))
+    h=list(map(str,[gg[6],gg[7],gg[8],gg[9],gg[10]]))
+    j=list(map(str,[gg[11],gg[12],gg[13],gg[14],gg[15]]))
+    k=list(map(str,[gg[16],gg[17],gg[18],gg[19],gg[20]]))
+    l=list(map(str,[gg[21],gg[22],gg[23],gg[24],gg[25]]))
+    
+    print('-------------------------')
+    print('| '+colored('B', 'cyan', attrs=['blink']).center(2)+'  | '+colored('I', 'cyan', attrs=['blink']).center(2)+'  | '+colored('N', 'cyan', attrs=['blink']).center(2)+'  | '+colored('G', 'cyan', attrs=['blink']).center(2)+'  | '+colored('O', 'cyan', attrs=['blink']).center(2)+' |')
+    print('-------------------------')
+    print('| '+g[0].center(2)+' | '+g[1].center(2)+' | '+g[2].center(2)+' | '+g[3].center(2)+' | '+g[4].center(2)+'|')
+    print('-------------------------')
+    print('| '+h[0].center(2)+' | '+h[1].center(2)+' | '+h[2].center(2)+' | '+h[3].center(2)+' | '+h[4].center(2)+'|')
+    print('-------------------------')
+    print('| '+j[0].center(2)+' | '+j[1].center(2)+' | '+j[2].center(2)+' | '+j[3].center(2)+' | '+j[4].center(2)+'|')
+    print('-------------------------')
+    print('| '+k[0].center(2)+' | '+k[1].center(2)+' | '+k[2].center(2)+' | '+k[3].center(2)+' | '+k[4].center(2)+'|')
+    print('-------------------------')
+    print('| '+l[0].center(2)+' | '+l[1].center(2)+' | '+l[2].center(2)+' | '+l[3].center(2)+' | '+l[4].center(2)+'|')
+    print('-------------------------')
+    
+
+print('ENTER YOUR VALUES CORRECTLY  EG:1 2 3 4 5 **NUMBERS WITH SPACE BETWEEN EACH**')
+p1=[np.array(list(map(int,input('PLAYER 1!').split()))) for i in range(5)]
+print('ENTER YOUR VALUES CORRECTLY  EG:1 2 3 4 5 **NUMBERS WITH SPACE BETWEEN EACH**')
+p2=[np.array(list(map(int,input('PLAYER 2!').split()))) for i in range(5)]
+
+p1_bsheet=dicte(p1)
+p2_bsheet=dicte(p2)
+
+p1_check=check(p1)
+p2_check=check(p2)
+
+res=randint(0,1)
+if res==0:
+    print('')
+    print('PLAYER 1 WILL GO FIRST')
+if res==1:
+    print('')
+    print('LOL PLAYER 1! PLAYER 2 WILL GO FIRST')
+if res==0:
+    for i in range(101):
+        if i%2==0:
+            #player 1
+            if p1_check.count([])==5 :
+                print("PLAYER 1 WINS!!,PLAYER 2 WHAT A LOSER!!")   
+                break
+            elif p2_check.count([])==5:
+                print('PLAYER 2 WINS!!,PLAYER 1 WHAT A LOSER!!')
+                break
+            print('')
+            display(p1_bsheet)
+            n1=input('ENTER PLAYER 1 NUMBER: ')
+            p1_turn=p1_bsheet[int(n1)]
+            for j in range(12):
+                if p1_turn in p1_check[j]:
+                    p1_check[j].remove(p1_turn)
+                    p1_bsheet[int(n1)]='X'
+                if p1_turn in p2_check[j]:
+                    p2_check[j].remove(p1_turn)
+                for i,j in p2_bsheet.items():
+                    if j==p1_turn:
+                        p2_bsheet[i]='X'
+            
+        else:
+            if p1_check.count([])==5 :
+                print("PLAYER 1 WINS!!,PLAYER 2 WHAT A LOSER!!")   
+                break
+            elif p2_check.count([])==5:
+                print("PLAYER 2 WINS!!,PLAYER 1 WHAT A LOSER!!")
+                break
+            print('')
+            display(p2_bsheet)
+            n2=input('ENTER PLAYER 2 NUMBER: ')
+            p2_turn=p2_bsheet[int(n2)]
+            for j in range(12):
+                if p2_turn in p2_check[j]:
+                    p2_check[j].remove(p2_turn)
+                    p2_bsheet[int(n2)]='X'
+                if p2_turn in p1_check[j]:
+                    p1_check[j].remove(p2_turn)
+                for i,j in p1_bsheet.items():
+                    if j==p2_turn:
+                        p1_bsheet[i]='X'
+
+if res==1:
+    for i in range(101):
+        if i%2==0:
+            if p1_check.count([])==5 :
+                print("PLAYER 1 WINS!!,PLAYER 2 WHAT A LOSER!!")   
+                break
+            elif p2_check.count([])==5:
+                print("PLAYER 2 WINS!!,PLAYER 1 WHAT A LOSER!!")
+                break
+            print('')
+            display(p2_bsheet)
+            n2=input('ENTER PLAYER 2 NUMBER: ')
+            p2_turn=p2_bsheet[int(n2)]
+            for j in range(12):
+                if p2_turn in p2_check[j]:
+                    p2_check[j].remove(p2_turn)
+                    p2_bsheet[int(n2)]='X'
+                if p2_turn in p1_check[j]:
+                    p1_check[j].remove(p2_turn)
+                for i,j in p1_bsheet.items():
+                    if j==p2_turn:
+                        p1_bsheet[i]='X'
+
+
+        else:
+            #player 1
+            if p1_check.count([])==5 :
+                print('PLAYER 1 WINS!!,PLAYER 2 WHAT A LOSER!!')   
+                break
+            elif p2_check.count([])==5:
+                print("PLAYER 2 WINS!!,PLAYER 1 WHAT A LOSER!!")
+                break
+            print('')
+            display(p1_bsheet)
+            n1=input('ENTER PLAYER 1 NUMBER: ')
+            p1_turn=p1_bsheet[int(n1)]
+            for j in range(12):
+                if p1_turn in p1_check[j]:
+                    p1_check[j].remove(p1_turn)
+                    p1_bsheet[int(n1)]='X'
+                if p1_turn in p2_check[j]:
+                    p2_check[j].remove(p1_turn)
+                for i,j in p2_bsheet.items():
+                    if j==p1_turn:
+                        p2_bsheet[i]='X'
+
+
+
+
